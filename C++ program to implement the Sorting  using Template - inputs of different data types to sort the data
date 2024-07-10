@@ -1,0 +1,152 @@
+#include <iostream>
+
+using namespace std;
+template <class T>
+int part(T arr[],int s,int e)
+{
+    T pivot=arr[e];
+    int p=s;
+    for(int i=s;i<e;++i)
+    {
+        if(arr[i]<pivot)
+        {
+            T temp;
+            temp=arr[i];
+            arr[i]=arr[p];
+            arr[p]=temp;
+            ++p;
+        }
+        }
+    T t;
+    t=arr[e];
+    arr[e]=arr[p];
+    arr[p]=t;
+
+    return p;
+}
+
+template <class T>
+void quicksort(T arr[],int s,int e)
+{
+    if(s<e)
+    {
+        int p=part(arr,s,e);
+        quicksort(arr,s,p-1);
+        quicksort(arr,p+1,e);
+    }
+}
+template<class T>
+void print(T *arr,int length)
+{
+    cout<<"The Sorted Array is :";
+    cout<<"{";
+    for(int i=0;i<length;++i)
+    {
+        cout<<arr[i];
+        if(i<length-1)
+        {
+            cout<<", ";
+        }
+    }
+    cout<<"}";
+}
+int main()
+{
+    int choice;
+
+    cout<<"1.int "<<endl;
+    cout<<"2.char "<<endl;
+    cout<<"3.float "<<endl;
+    cout<<"4.double "<<endl;
+    cout<<"5.string "<<endl;
+    cout<<"Enter the Data Type of the Elements : ";
+
+    while (true)
+        {
+            cin>>choice;
+            if(choice <6 && choice >0)
+            {
+                break;
+            }
+            else
+            {
+                cout<<"Please Enter the valid input : ";
+            }
+
+        }
+
+    if (choice==1)
+    {
+    int length,i;
+    cout<<"Enter the Length of the Integer Array : ";
+    cin>>length;
+        int arr[length];
+    cout<<"Enter the Elements of the Integer Array : "<<endl;
+    for(i=0;i<length;++i)
+    {
+        cin>>arr[i];
+    }
+    quicksort<int>(arr,0,length-1);
+    print(arr,length);
+    }
+
+    else if (choice==2)
+    {
+    int length,i;
+    cout<<"Enter the Length of the Character Array : ";
+    cin>>length;
+    char arr[length];
+    cout<<"Enter the Elements of the Character Array : "<<endl;
+    for(i=0;i<length;++i)
+    {
+        cin>>arr[i];
+    }
+    quicksort<char>(arr,0,length-1);
+    print(arr,length);
+    }
+
+    else if (choice==3)
+    {
+    int length,i;
+    cout<<"Enter the Length of the Float Array : ";
+    cin>>length;
+    float arr[length];
+    cout<<"Enter the Elements of the Float Array : "<<endl;
+    for(i=0;i<length;++i)
+    {
+        cin>>arr[i];
+    }
+    quicksort<float>(arr,0,length-1);
+    print(arr,length);
+    }
+
+    else if(choice==4)
+    {
+    int length,i;
+    cout<<"Enter the Length of the Double Array : ";
+    cin>>length;
+    double arr[length];
+    cout<<"Enter the Elements of the Double Array : "<<endl;
+    for(i=0;i<length;++i)
+    {
+        cin>>arr[i];
+    }
+    quicksort<double>(arr,0,length-1);
+    print(arr,length);
+    }
+    else
+    {
+    int length,i;
+    cout<<"Enter the Length of the String Array : ";
+    cin>>length;
+    string arr[length];
+    cout<<"Enter the Elements of the String Array : "<<endl;
+    for(i=0;i<length;++i)
+    {
+        cin>>arr[i];
+    }
+    quicksort<string>(arr,0,length-1);
+    print(arr,length);
+    }
+return 0;
+}
