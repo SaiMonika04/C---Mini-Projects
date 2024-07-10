@@ -1,0 +1,175 @@
+#include<iostream>
+using namespace std;
+class Customer
+{
+protected:
+  int account_no;
+  char name[10];
+public:
+  void getdata ()
+  {
+    cout << "Enter the customer name : ";
+    cin >> name;
+    cout << "Enter the account no : ";
+    cin >> account_no;
+  }
+};
+class rbi
+{
+public:void detail ()
+  {
+    cout << "Intrest rate of RBI is 4%\n";
+    cout << "Minimum balance of any account decided by RBI should be 1000rs/-\n";
+    cout << "Maximum withdrawl limit is 20000rs/-\n";
+  }
+};
+class sbi
+{
+  float r = 4, t = 1, si, w, credit;
+public:
+  void cre ()
+  {
+    cout << "Please enter the amount to be credited : ";
+    cin >> credit;
+  }
+  double getinterestrate ()
+  {
+    si = (credit * r * t) / 100;
+    credit = si + credit;
+    return credit;
+  }
+  double getwithdrawallimit ()
+  {
+    cout << "Enter the amount you want to withdrawl : ";
+    cin >> w;
+    if (w >= 20000)
+      {
+	cout << "Please note that withdrawl limit is 200000\n";
+      }
+    else
+      {
+	credit = credit - w;
+	return credit;
+      }
+  }
+  double balance ()
+  {
+    cout << "Balance is : " << credit;
+    return credit;
+  }
+};
+
+class icici
+{
+  float r = 4, t = 1, si, w, credit;
+public:
+  void cre ()
+  {
+    cout << "Please enter the amount to be credited : ";
+    cin >> credit;
+  }
+  double getinterestrate ()
+  {
+    si = (credit * r * t) / 100;
+    credit = si + credit;
+    return credit;
+  }
+  double getwithdrawallimit ()
+  {
+    cout << "Enter the amount you want to withdrawl : ";
+    cin >> w;
+    if (w >= 20000)
+      {
+	cout << "Please note that withdrawl limit is 200000\n";
+      }
+    else
+      {
+	credit = credit - w;
+	return credit;
+      }
+  }
+  double balance ()
+  {
+    cout << "Balance is : " << credit;
+    return credit;
+  }
+};
+
+class pnb
+{
+  float r = 4, t = 1, si, w, credit, ins;
+public:
+  void cre ()
+  {
+    cout << "Please enter the amount to be credited : ";
+    cin >> credit;
+  }
+  double getinterestrate ()
+  {
+    si = (credit * r * t) / 100;
+    ins = si + credit;
+    return ins;
+  }
+  double getwithdrawallimit ()
+  {
+    cout << "Enter the amount you want to withdrawl : ";
+    cin >> w;
+    if (w >= 20000)
+      {
+	cout << "Please note that withdrawl limit is 200000\n";
+      }
+    else
+      {
+	credit = credit - w;
+	return credit;
+      }
+  }
+  double balance ()
+  {
+    cout << "Balance is : " << credit;
+    return credit;
+  }
+};
+
+int
+main ()
+{
+  int a;
+  sbi s;
+  icici i;
+  pnb p;
+  Customer c;
+  c.getdata ();
+  rbi r;
+  r.detail ();
+  cout << "Choose the bank\n1:SBI\n2:ICICI\n3:PNB\n";
+  cin >> a;
+  switch (a)
+    {
+    case 1:
+      s.cre ();
+      cout << "Intrest rate after 1 year is : ";
+      cout << s.getinterestrate () << endl;
+      s.getwithdrawallimit ();
+      s.balance ();
+      break;
+    case 2:
+      i.cre ();
+      cout << "Intrest rate after 1 year is : ";
+      cout << i.getinterestrate () << endl;
+      i.getwithdrawallimit ();
+      i.balance ();
+      break;
+    case 3:
+      p.cre ();
+      cout << "Intrest rate after 1 year is : ";
+      cout << p.getinterestrate () << endl;
+      p.getwithdrawallimit ();
+      p.balance ();
+      break;
+    case 4:
+      exit (0);
+    default:
+      cout << "Please choose the correct option\n";
+    }
+}
