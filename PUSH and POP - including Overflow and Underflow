@@ -1,0 +1,102 @@
+#include <iostream>
+#define n 2
+using namespace std;
+
+int myStack[n];
+int stack_top = -1;
+
+void Overflow()
+{
+    if (stack_top >= n)
+    {
+        throw 1;
+    }
+}
+
+void Underflow()
+{
+    if (stack_top == -1)
+    {
+        throw '1';
+    }
+}
+
+void Pop_stack()
+{
+    try
+    {
+        Underflow();
+        stack_top--;
+
+    }
+    catch (char x)
+    {
+        cout << "STACK UNDERFLOW ---- (STACK IS EMPTY)" << endl;
+    }
+}
+
+void Push_stack()
+{
+    try
+    {
+        Overflow();
+        int value;
+        cout << "Enter a Number to Insert : ";
+        cin >> value;
+        stack_top++;
+        myStack[stack_top] = value;
+    }
+    catch (int i)
+    {
+        cout << "STACK OVERFLOW ---- (STACK IS FULL)" << endl;
+    }
+}
+
+void Display()
+{
+    cout << "MY STACK IS : " << endl;
+    if (stack_top == -1)
+    {
+        cout << "EMPTY" << endl;
+    }
+    else
+    {
+        for(int i = 0; i <= stack_top; i++)
+        {
+            cout << myStack[i] << endl;
+        }
+    }
+}
+
+int main()
+{
+    int ch = 1, op;
+
+    while (ch != 0)
+    {
+        cout << "----Enter Your Choice----" << endl;
+        cout << "1.PUSH" << endl;
+        cout << "2.POP" << endl;
+        cout << "3.DISPLAY" << endl;
+        cout << "4.Exit" << endl;
+        cout << ">";
+        cin >> op;
+
+        switch(op)
+        {
+            case 1 :
+                Push_stack();
+                break;
+            case 2 :
+                Pop_stack();
+                break;
+            case 3 :
+                Display();
+                break;
+            case 4 :
+                return 0;
+            default :
+                cout << "Invalid Choice" << endl;
+        }
+    }
+}
