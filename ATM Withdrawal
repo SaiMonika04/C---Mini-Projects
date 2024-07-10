@@ -1,0 +1,63 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class atm
+{
+	public:
+		double withdraw;
+		char passwd[];
+};
+int main()
+{
+	atm a;
+	double total_amount=10000;
+	int choice;
+	char old_passwd[10]="sai";
+	char new_passwd[10];
+	double withdraw;
+	while(1)
+{
+    cout<<"\n======================================================================================\n";
+    cout<<"welcome to My Bank ATM\n";
+    cout<<"Your Account Balance is:"<<total_amount<<endl;
+	cout<<"Enter 1: to withdraw, Enter 2: to change the password, Enter 3: to exit\n";
+	cout<<"Enter your choice:-";
+	cin>>choice;
+	switch(choice)
+	{
+	  case 1:cout<<"enter the amount you want to withdraw:";
+		cin>>withdraw;
+		if(total_amount>withdraw)
+		{
+		total_amount=total_amount-withdraw;
+		cout<<"\nYour updated balance:"<<total_amount<<"\n";
+		cout<<"===================================================================================";
+		}
+		else
+		{
+		cout<<"no sufficient balance\n";
+	    }
+	    break;
+		case 2:cout<<"enter the old password......\n";
+		cin>>a.passwd;
+		if (strcmp(old_passwd,a.passwd)==0)
+		{
+		cout<<"enter the new password.......\n";
+		cin>>new_passwd;
+		strcpy(old_passwd,new_passwd);
+		cout<<"Password Changed Successfully.\n";
+		cout<<"=======================================================================================";
+		}
+		else
+		{
+			cout<<"Password Cannot be changed as the old password entered is wrong.\n";
+		}
+		break;
+		case 3:
+		    cout<<"Thank You, Have a Great Day :)";
+            exit(0);
+            break;
+		default:cout<<"invalid choice";
+	}
+}
+}
