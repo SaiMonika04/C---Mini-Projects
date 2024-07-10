@@ -1,0 +1,121 @@
+#include <iostream>
+
+using namespace std;
+
+class Team {
+    private:
+        int id;
+        int batting_pts;
+        int bowling_pts;
+        int fielding_pts;
+        int all_rounder_pts;
+        int cap_pts;
+
+    public:
+        Team() {
+            Team(0, 0, 0, 0, 0, 0);
+        }
+
+        // overloading constructor
+        Team(int id, int batting_pts, int bowling_pts, int fielding_pts, int all_rounder_pts, int cap_pts) {
+            this->id = id;
+            this->batting_pts = batting_pts;
+            this->bowling_pts = bowling_pts;
+            this->fielding_pts = fielding_pts;
+            this->all_rounder_pts = all_rounder_pts;
+            this->cap_pts = cap_pts;
+        }
+
+
+        bool operator > (const Team &opp) {
+            int teamPoints = 0, oppPoints = 0;
+
+            if(batting_pts > opp.batting_pts)
+                teamPoints++;
+            else if(batting_pts == opp.batting_pts)
+                id < opp.id ? teamPoints++ : oppPoints++;
+            else
+                oppPoints++;
+
+            if(bowling_pts > opp.bowling_pts)
+                teamPoints++;
+            else if(bowling_pts == opp.bowling_pts)
+                id < opp.id ? teamPoints++ : oppPoints++;
+            else
+                oppPoints++;
+
+            if(fielding_pts > opp.fielding_pts)
+                teamPoints++;
+            else if(fielding_pts == opp.fielding_pts)
+                id < opp.id ? teamPoints++ : oppPoints++;
+            else
+                oppPoints++;
+
+            if(all_rounder_pts > opp.all_rounder_pts)
+                teamPoints++;
+            else if(all_rounder_pts == opp.all_rounder_pts)
+                id < opp.id ? teamPoints++ : oppPoints++;
+            else
+                oppPoints++;
+
+            if(cap_pts > opp.cap_pts)
+                teamPoints++;
+            else if(cap_pts == opp.cap_pts)
+                id < opp.id ? teamPoints++ : oppPoints++;
+            else
+                oppPoints++;
+
+            return teamPoints > oppPoints;
+        }
+
+        bool operator < (const Team &opp) {
+            return !(*this > opp);
+        }
+};
+
+void tournament(Team *teams, int totalTeams) {
+    int round = 1, i = 0, j = 1, temp;
+
+
+    while(i < totalTeams && j < totalTeams) {
+        cout << "\nRound-" << round << ":" << endl;
+        cout << "Team-" << i + 1 << " vs " << "Team-" << j + 1 << endl;
+
+        if(teams[i] > teams[j]) {
+            j++;
+        } else {
+            temp = j;
+            j++;
+            i = temp;
+        }
+
+        cout << "Team-" << i + 1 << " won!" << endl;
+        round++;
+    }
+
+    if(i >= totalTeams) {
+        cout << "\nCongratulations! Team-" << j + 1 << " has won the tournament.\n" << endl;
+    } else {
+        cout << "\nCongratulations! Team-" << i + 1 << " has won the tournament.\n" << endl;
+    }
+}
+
+int main() {
+    int tteams, batting_pts_pts, bowling_pts_pts, fielding_pts_pts, all_rounder_pts, cap_pts;
+
+    cout << "\nEnter the number of teams participating in the tournament: ";
+    cin >> tteams;
+
+    Team *teams = new Team[tteams];
+
+    cout << "Input individual team statistic/performance:" << endl;
+    for(int i = 0; i < tteams; i++) {
+        cout << "Team-" << i + 1 << ": ";
+        cin >> batting_pts_pts >> bowling_pts_pts >> fielding_pts_pts >> all_rounder_pts >> cap_pts;
+        teams[i] = Team(i + 1, batting_pts_pts, bowling_pts_pts, fielding_pts_pts, all_rounder_pts, cap_pts);
+    }
+
+    tournament(teams, tteams);
+
+    return 0;
+}
